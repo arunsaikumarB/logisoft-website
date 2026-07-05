@@ -1,0 +1,252 @@
+/** @import must precede all other statements */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=Geist:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 220 30% 93%;
+
+    --card: 220 25% 8%;
+    --card-foreground: 220 30% 93%;
+
+    --popover: 220 25% 8%;
+    --popover-foreground: 220 30% 93%;
+
+    --primary: 213 100% 32%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 256 100% 75%;
+    --secondary-foreground: 0 0% 0%;
+
+    --muted: 220 15% 25%;
+    --muted-foreground: 220 10% 65%;
+
+    --accent: 213 100% 32%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 95%;
+
+    --border: 220 20% 18%;
+    --input: 220 20% 18%;
+    --ring: 213 100% 32%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 220 30% 93%;
+    --card: 220 25% 8%;
+    --card-foreground: 220 30% 93%;
+    --primary: 213 100% 32%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 256 100% 75%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 220 15% 25%;
+    --muted-foreground: 220 10% 65%;
+    --border: 220 20% 18%;
+    --input: 220 20% 18%;
+    --ring: 213 100% 32%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  body {
+    @apply bg-black text-foreground;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', 'Inter', sans-serif;
+    font-weight: 700;
+  }
+
+  :where(p, span, li, h1, h2, h3, h4, h5, h6, a, button, label, td, th) {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  pre, code {
+    overflow-x: auto;
+    white-space: pre;
+  }
+}
+
+@layer components {
+  .glass-card {
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid #053579;
+    border-radius: 24px;
+    box-shadow: 0px 4px 49px 0px rgba(0, 84, 165, 0.46);
+  }
+
+  .glass-service {
+    backdrop-filter: blur(10px);
+    background: rgba(10, 10, 15, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+  }
+
+  .glass-stats {
+    backdrop-filter: blur(4px);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+  }
+
+  .glass-partner {
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+  }
+
+  .badge-pill {
+    background: linear-gradient(to right, rgba(255,255,255,0.1), rgba(153,153,153,0.1));
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 100px;
+  }
+
+  .text-gradient-hero {
+    background: linear-gradient(88.24deg, rgba(255,255,255,0.4) 1.56%, #ffffff 23.75%, #ffffff 50.16%, rgba(255,255,255,0.4) 97.71%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-blue {
+    background: linear-gradient(to right, #60a5fa, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 40px rgba(0, 84, 165, 0.5), 0 0 80px rgba(0, 84, 165, 0.25);
+  }
+
+  .marquee {
+    width: 100%;
+    max-width: 1333px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+  }
+
+  /* Seamless infinite marquee: the track holds two identical logo sets and
+     translates left by exactly one set (-50%). Each logo owns its trailing
+     gap via margin-right, so the -50% point lands pixel-perfectly on the
+     start of the duplicate set — no jump, no reset. */
+  .marquee-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    will-change: transform;
+    animation: marquee-scroll 25s linear infinite;
+  }
+
+  .marquee-logo {
+    flex-shrink: 0;
+    object-fit: contain;
+    opacity: 0.55;
+    filter: grayscale(100%);
+    transition: opacity 0.4s ease, filter 0.4s ease;
+  }
+
+  .marquee-logo:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+  }
+
+  /* Consistent homepage section spacing */
+  .section-padding {
+    @apply px-6 py-16 sm:px-12 lg:px-20;
+  }
+
+  .section-shell {
+    @apply section-padding relative mx-auto w-full max-w-[1440px] overflow-hidden bg-black;
+  }
+
+  .section-shell-full {
+    @apply section-padding relative w-full overflow-hidden bg-black;
+  }
+
+  .section-intro {
+    @apply flex w-full flex-col items-center text-center;
+  }
+
+  .section-title {
+    @apply mb-4;
+  }
+
+  .section-lead {
+    @apply mx-auto mb-10 max-w-3xl text-base leading-relaxed;
+  }
+
+  .section-content {
+    @apply flex w-full flex-col gap-10;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .nav-link-active {
+    border-bottom: 2px solid white;
+    padding-bottom: 6px;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Right-to-left seamless scroll. translate3d forces GPU compositing for a
+   smooth 60fps loop. -50% == exactly one logo set (track = two sets). */
+@keyframes marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* Accessibility: honour reduced-motion by freezing the marquee. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+    transform: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .reduce-motion-mobile {
+    animation: none !important;
+    transition: none !important;
+  }
+}
