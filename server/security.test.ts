@@ -197,7 +197,7 @@ describe("API security", () => {
 
     expect(limited.status).toBe(429);
     expect(limited.headers.get("retry-after")).toBeTruthy();
-    expect(logs.at(-1)).toMatch(/status=rate_limited$/);
+    expect(logs[logs.length - 1]).toMatch(/status=rate_limited$/);
     expect(logs.join("\n")).not.toContain(validBody.email);
   });
 });
