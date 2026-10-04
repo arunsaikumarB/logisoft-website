@@ -24,4 +24,8 @@ dist-ssr
 *.sw?
 
 .config/
-!.env
+
+# Secrets. .env.example is the only env file that belongs in git.
+.env
+.env.*
+!.env.example
